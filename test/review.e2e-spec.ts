@@ -1,15 +1,16 @@
-import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
-import * as request from 'supertest';
-import { AppModule } from './../src/app.module';
-import { CreateReviewDto } from '../src/review/dto/create-review.dto';
+import { Test, TestingModule } from '@nestjs/testing';
 import { Types, disconnect } from 'mongoose';
+import * as request from 'supertest';
+import { CreateReviewDto } from '../src/review/dto/create-review.dto';
 import { REVIEW_NOT_FOUND } from '../src/review/review.constants';
+import { AppModule } from './../src/app.module';
 
 const productId = new Types.ObjectId().toHexString();
 
 const testDto: CreateReviewDto = {
 	name: 'Тест',
+	typegooseName: 'string',
 	title: 'Заголовок',
 	description: 'Описание тестовое',
 	rating: 5,
