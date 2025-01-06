@@ -1,16 +1,15 @@
-import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import { Types, disconnect } from 'mongoose';
+import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
-import { CreateReviewDto } from '../src/review/dto/create-review.dto';
-import { REVIEW_NOT_FOUND } from '../src/review/review.constants';
 import { AppModule } from './../src/app.module';
+import { CreateReviewDto } from '../src/review/dto/create-review.dto';
+import { Types, disconnect } from 'mongoose';
+import { REVIEW_NOT_FOUND } from '../src/review/review.constants';
 
 const productId = new Types.ObjectId().toHexString();
 
 const testDto: CreateReviewDto = {
 	name: 'Тест',
-	typegooseName: 'string',
 	title: 'Заголовок',
 	description: 'Описание тестовое',
 	rating: 5,
@@ -38,6 +37,16 @@ describe('AppController (e2e)', () => {
 			.then(({ body }: request.Response) => {
 				createdId = body._id;
 				expect(createdId).toBeDefined();
+				done();
+			});
+	});
+
+	it('/review/create (POST) - fail', async (done) => {
+		return request(app.getHttpServer())
+			.post('/review/create')
+			.send({ ...testDto, rating: 0 })
+			.expect(400)
+			.then(({ body }: request.Response) => {
 				done();
 			});
 	});

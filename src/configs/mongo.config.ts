@@ -5,10 +5,10 @@ export const getMongoConfig = async (configService: ConfigService): Promise<Type
 	return {
 		uri: getMongoString(configService),
 		...getMongoOptions()
-	}
+	};
 };
 
-const getMongoString = (configService: ConfigService) => 
+const getMongoString = (configService: ConfigService) =>
 	'mongodb://' +
 	configService.get('MONGO_LOGIN') +
 	':' +
