@@ -1,12 +1,18 @@
 import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { Types, disconnect } from 'mongoose';
+import { AuthDto } from 'src/auth/dto/auth.dto';
 import * as request from 'supertest';
 import { CreateReviewDto } from '../src/review/dto/create-review.dto';
 import { REVIEW_NOT_FOUND } from '../src/review/review.constants';
 import { AppModule } from './../src/app.module';
 
 const productId = new Types.ObjectId().toHexString();
+
+const loginDto: AuthDto = {
+	login: 'a3@a.ru',
+	password: '3'
+}
 
 const testDto: CreateReviewDto = {
 	name: 'Тест',
@@ -20,6 +26,7 @@ const testDto: CreateReviewDto = {
 describe('AppController (e2e)', () => {
 	let app: INestApplication;
 	let createdId: string;
+	let token: string;
 
 	beforeEach(async () => {
 		const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -28,6 +35,11 @@ describe('AppController (e2e)', () => {
 
 		app = moduleFixture.createNestApplication();
 		await app.init();
+
+		const { body } = await request(app.getHttpServer())
+								.post('/auth/login')
+								.send(loginDto);
+		token = body.access_token;
 	});
 
 	it('/review/create (POST) - success', async (done) => {
@@ -75,12 +87,14 @@ describe('AppController (e2e)', () => {
 	it('/review/:id (DELETE) - success', () => {
 		return request(app.getHttpServer())
 			.delete('/review/' + createdId)
+			.set('Authorization', 'Bearer ' + token)
 			.expect(200);
 	});
 
 	it('/review/:id (DELETE) - fail', () => {
 		return request(app.getHttpServer())
 			.delete('/review/' + new Types.ObjectId().toHexString())
+			.set('Authorization', 'Bearer ' + token)
 			.expect(404, {
 				statusCode: 404,
 				message: REVIEW_NOT_FOUND
