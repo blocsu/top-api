@@ -1,8 +1,8 @@
+import { TypegooseModule } from '@m8a/nestjs-typegoose';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
-import { TypegooseModule } from 'nestjs-typegoose';
 import { getJwtConfig } from '../configs/jwt.config';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';

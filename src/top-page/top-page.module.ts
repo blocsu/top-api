@@ -1,5 +1,5 @@
+import { TypegooseModule } from '@m8a/nestjs-typegoose';
 import { Module } from '@nestjs/common';
-import { TypegooseModule } from 'nestjs-typegoose';
 import { TopPageController } from './top-page.controller';
 import { TopPageModel } from './top-page.model';
 

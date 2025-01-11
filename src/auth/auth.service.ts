@@ -1,8 +1,8 @@
+import { InjectModel } from '@m8a/nestjs-typegoose';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { ModelType } from '@typegoose/typegoose/lib/types';
 import { compare, genSalt, hash } from 'bcryptjs';
-import { InjectModel } from 'nestjs-typegoose';
 import { USER_NOT_FOUND_ERROR, WRONG_PASSWORD_ERROR } from './auth.constants';
 import { AuthDto } from './dto/auth.dto';
 import { UserModel } from './user.model';
