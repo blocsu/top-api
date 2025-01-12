@@ -12,9 +12,6 @@ class ProductCharacteristic {
 export interface ProductModel extends Base { }
 export class ProductModel extends TimeStamps {
 	@prop()
-	typegooseName: string;
-
-	@prop()
 	image: string;
 
 	@prop()
@@ -24,7 +21,7 @@ export class ProductModel extends TimeStamps {
 	price: number;
 
 	@prop()
-	oldPrice: number;
+	oldPrice?: number;
 
 	@prop()
 	credit: number;

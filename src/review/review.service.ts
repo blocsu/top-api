@@ -1,7 +1,7 @@
-import { InjectModel } from '@m8a/nestjs-typegoose';
 import { Injectable } from '@nestjs/common';
 import { DocumentType, ModelType } from '@typegoose/typegoose/lib/types';
 import { Types } from 'mongoose';
+import { InjectModel } from 'nestjs-typegoose';
 import { CreateReviewDto } from './dto/create-review.dto';
 import { ReviewModel } from './review.model';
 
@@ -18,6 +18,6 @@ export class ReviewService {
 	}
 
 	async findByProductId(productId: string): Promise<DocumentType<ReviewModel>[]> {
-		return this.reviewModel.find({ productId: Types.ObjectId(productId) }).exec();
+		return this.reviewModel.find({ productId: new Types.ObjectId(productId) }).exec();
 	}
 }

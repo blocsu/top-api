@@ -5,9 +5,6 @@ export class CreateReviewDto {
 	name: string;
 
 	@IsString()
-	typegooseName: string;
-
-	@IsString()
 	title: string;
 
 	@IsString()
