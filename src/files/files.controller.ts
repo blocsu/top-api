@@ -20,7 +20,7 @@ export class FilesController {
 			saveArray.push(new MFile({
 				originalname: `${file.originalname.split('.')[0]}.webp`,
 				buffer
-			}))
+			}));
 		}
 		return this.filesService.saveFiles(saveArray);
 	}

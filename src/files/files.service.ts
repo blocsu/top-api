@@ -10,13 +10,13 @@ import { MFile } from './mfile.class';
 export class FilesService {
 
 	async saveFiles(files: MFile[]): Promise<FileElementResponse[]> {
-		const dateFolder = format(new Date(), 'yyyy-mm-dd');
+		const dateFolder = format(new Date(), 'yyyy-MM-dd');
 		const uploadFolder = `${path}/uploads/${dateFolder}`;
 		await ensureDir(uploadFolder);
 		const res: FileElementResponse[] = [];
 		for (const file of files) {
 			await writeFile(`${uploadFolder}/${file.originalname}`, file.buffer);
-			res.push({ url: `${uploadFolder}/${file.originalname}`, name: file.originalname })
+			res.push({ url: `/uploads/${dateFolder}/${file.originalname}`, name: file.originalname });
 		}
 		return res;
 	}
