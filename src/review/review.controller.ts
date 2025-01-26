@@ -32,7 +32,7 @@ export class ReviewController {
 	}
 
 	@UsePipes(new ValidationPipe())
-	@Post('create')
+	@Post('notify')
 	async notify(@Body() dto: CreateReviewDto) {
 		const message = `Имя: ${dto.name}\n`
 			+ `Заголовок: ${dto.title}\n`
