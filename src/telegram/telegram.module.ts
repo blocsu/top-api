@@ -10,13 +10,13 @@ export class TelegramModule {
     const asyncOptions = this.createAsyncOptionsProvider(options);
     return {
       module: TelegramModule,
-      imports:options.imports,
+      imports: options.imports,
       providers: [TelegramService, asyncOptions],
       exports: [TelegramService]
     }
   }
 
-  private static createAsyncOptionsProvider(options:ITelegramModuleAsyncOptions): Provider {
+  private static createAsyncOptionsProvider(options: ITelegramModuleAsyncOptions): Provider {
     return {
       provide: TELEGRAM_MODULE_OPTIONS,
       useFactory: async (...args: any[]) => {

@@ -38,7 +38,7 @@ export class ReviewController {
 			+ `Заголовок: ${dto.title}\n`
 			+ `Описание: ${dto.description}\n`
 			+ `Рейтинг: ${dto.rating}\n`
-			+ `ID Продукта: ${dto.productId}`
+			+ `ID Продукта: ${dto.productId}`;
 		return this.telegramService.sendMessage(message);
 	}
 

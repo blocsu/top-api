@@ -10,6 +10,7 @@ import { ReviewModule } from './review/review.module';
 import { SitemapModule } from './sitemap/sitemap.module';
 import { TelegramModule } from './telegram/telegram.module';
 import { TopPageModule } from './top-page/top-page.module';
+import { HhModule } from './hh/hh.module';
 
 @Module({
 	imports: [
@@ -29,7 +30,8 @@ import { TopPageModule } from './top-page/top-page.module';
 			imports: [ConfigModule],
 			inject: [ConfigService],
 			useFactory: getTelegramConfig
-		})
+		}),
+		HhModule
 	]
 })
 export class AppModule { }

@@ -11,8 +11,8 @@ export class TelegramService {
 	constructor(
 		@Inject(TELEGRAM_MODULE_OPTIONS) options: ITelegramOptions
 	) {
+		this.bot = new Telegraf(options.token);
 		this.options = options;
-		this.bot = new Telegraf(options.token)
 	}
 
 	async sendMessage(message: string, chatId: string = this.options.chatId) {

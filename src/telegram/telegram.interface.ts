@@ -1,6 +1,6 @@
 import { ModuleMetadata } from '@nestjs/common';
 
-export interface ITelegramOptions{
+export interface ITelegramOptions {
 	chatId: string;
 	token: string;
 }
